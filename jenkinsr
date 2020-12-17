@@ -1,0 +1,46 @@
+pipeline {
+  agent any
+   stages { 
+	stage('git checkout'){
+	   steps {
+	    script {
+      try {
+          git branch: 'dev_1', url: 'https://github.com/Cignany/pythonproj'
+      } catch(err) {
+         sh "echo error in checkout"
+      }
+	  }
+   }
+   }
+	stage('Verify S3 setup') {
+	   steps { 
+	    script {
+       try {
+      // you need cloudbees aws credentials
+      withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'Rp_AWS_Credential', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY', correctClockSkew: true]])  {
+         sh "/usr/local/bin/aws s3 ls"
+         }
+      } catch(err) {
+         sh "echo error in sending artifacts to s3"
+      }
+   }
+}   
+  }   
+   stage('PushingCode  to s3') {
+      steps { 
+	    script {
+       try {
+      // you need cloudbees aws credentials
+      withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'Rp_AWS_Credential', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY', correctClockSkew: true]])  {
+         sh "/usr/local/bin/aws s3 ls"
+         sh "/usr/local/bin/aws s3 cp /var/lib/jenkins/workspace/py_s3_proj/regression.py    s3://projectsp1/"
+         sh "/usr/local/bin/aws s3 cp /var/lib/jenkins/workspace/py_s3_proj/All_data2.csv    s3://projectsp1/"
+         }
+      } catch(err) {
+         sh "echo error in sending artifacts to s3"
+      }
+   }
+   }
+   }
+ }
+}
