@@ -39,7 +39,7 @@ pipeline {
       } catch(err) {
          sh "echo error in sending artifacts to s3"
 	 sh "exit 1"
-      }r
+      }
    }
    }
    }
