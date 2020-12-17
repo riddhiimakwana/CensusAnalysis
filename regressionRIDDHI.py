@@ -11,8 +11,9 @@ import statsmodels.formula.api as smf
 
 #allData = pd.read_csv(r'‪C:\Users\Riddhi\Downloads\All_data.csv', skiprows=0, delimiter=',')#print(y)
 with open('All_data2.csv', 'r') as f:
-    allData = pd.read_csv(r'C:\Users\Riddhi\Desktop\regression code\All_data2.csv', skiprows=0, delimiter=',')
+    allData = pd.read_csv('All_data2.csv', skiprows=0, delimiter=',')
 
+df = pd.read_csv ('All_data2.csv', skiprows=0, delimiter=',')
 #allData = csv.reader(open('All_data.csv'), delimiter=',', lineterminator='\n')
 #27
 #def convert_to_int(col):
@@ -59,4 +60,5 @@ plt.plot(x, slope*x + intercept)
 plt.title('Linear Regression Analysis: Response Rate & Population 2000')
 plt.xlabel('Population', color='#1C2833')
 plt.ylabel('Response Rates')
-plt.show()
+#plt.show()
+plt.savefig('La.pdf', bbox_inches='tight', pad_inches=0)
