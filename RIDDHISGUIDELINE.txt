@@ -1,0 +1,72 @@
+1.
+
+cd C:\devop1\k8s_centos\vagrant-provisioning
+vagrant resume
+
+vagrant reload
+
+
+2. Open mobaXterm
+
+Verify timing
+
+3.open github
+
+4.show all files, repo/branch
+
+5.Open jenkins URL
+http://172.42.42.101:8080/job/py_proj_1/
+
+6. Go to jenkins Project: show pipeline config
+
+7. Back to project dashboard, run the selected project
+
+8.After/DUring run cmd output (the arrow) to see for a successdul/fail pipeline
+
+9. Displat all stages are successfull (green boxes)
+
+10. Login to AWS 
+
+11.Show S3 Bucket (Project, with date) 
+
+12. Create Cloud9 Environment, make sure to pick Amazon Linux 2 (recommended) 
+
+13. In cmd types "ls -ltr", ti check to make there are no files 
+
+14. Create wrapper script to pull s3 files and install python packages to run the regression
+
+15. RUN vi pull_code.sh ( TO EDIT TYPE "i" TO SAVE AND QUITE PRESS "ESC" THEN SHIFT AND COLON THEN TYPE "wq" then ENTER)
+ 
+16. Execute the wrapper file "sh wrapper.sh"
+
+17. Show the pdf created  
+
+
+
+vi wrapper.sh 
+
+aws s3 cp  s3://projectsp1/All_data.csv .
+aws s3 cp s3://projectsp1/masterfile.py . 
+
+
+sudo yum -y update
+sudo python3 -m pip install boto3
+sudo python3 -m pip install pandas
+sudo python3 -m pip install numpy
+sudo python3 -m pip install csv
+sudo python3 -m pip install sklearn
+sudo python3 -m pip install matplotlib
+sudo python3 -m pip install statsmodels
+sudo python3 -m pip install re
+sudo python3 -m pip install logging
+sudo python3 -m pip install metrics
+sudo python3 -m pip install scipy 
+sudo python3 -m pip install seaborn
+
+
+echo "-----------------Run Regression Model----------------"
+python3 masterfile.py
+
+
+
+echo "END OF EXECUTION"
