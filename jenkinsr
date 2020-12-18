@@ -33,8 +33,8 @@ pipeline {
       // you need cloudbees aws credentials
       withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'Rp_AWS_Credential', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY', correctClockSkew: true]])  {
          sh "/usr/local/bin/aws s3 ls"
-         sh "/usr/local/bin/aws s3 cp /var/lib/jenkins/workspace/sample/masterfile.py     s3://projectsp1/"
-         sh "/usr/local/bin/aws s3 cp /var/lib/jenkins/workspace/sample/All_data.csv   s3://projectsp1/"
+         sh "/usr/local/bin/aws s3 cp /var/lib/jenkins/workspace/masterSeniorProject/masterfile.py     s3://projectsp1/"
+         sh "/usr/local/bin/aws s3 cp /var/lib/jenkins/workspace/masterSeniorProject/All_data.csv   s3://projectsp1/"
          }
       } catch(err) {
          sh "echo error in sending artifacts to s3"
