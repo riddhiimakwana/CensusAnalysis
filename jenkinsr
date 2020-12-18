@@ -30,7 +30,7 @@ pipeline {
       steps { 
 	    script {
        try {
-      // you need cloudbees aws credentials
+      // you need aws credentials
       withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'Rp_AWS_Credential', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY', correctClockSkew: true]])  {
          sh "/usr/local/bin/aws s3 ls"
          sh "/usr/local/bin/aws s3 cp /var/lib/jenkins/workspace/masterSeniorProject/masterfile.py     s3://projectsp1/"
