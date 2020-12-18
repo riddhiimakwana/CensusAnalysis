@@ -35,6 +35,8 @@ pipeline {
          sh "/usr/local/bin/aws s3 ls"
          sh "/usr/local/bin/aws s3 cp /var/lib/jenkins/workspace/masterSeniorProject/masterfile.py     s3://projectsp1/"
          sh "/usr/local/bin/aws s3 cp /var/lib/jenkins/workspace/masterSeniorProject/All_data.csv   s3://projectsp1/"
+	 sh "/usr/local/bin/aws s3 cp /var/lib/jenkins/workspace/masterSeniorProject/multipleRegressionLines10.py	s3://projectsp1/"
+	  sh "/usr/local/bin/aws s3 cp /var/lib/jenkins/workspace/masterSeniorProject/multipleRegressionLines00_01.py	s3://projectsp1/"
          }
       } catch(err) {
          sh "echo error in sending artifacts to s3"
